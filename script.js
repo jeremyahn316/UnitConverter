@@ -18,27 +18,37 @@ function openTab(event, tab) {
     event.currentTarget.classList.add("active");
 }
 
-function createResultTab(event, input, result, fromUnit, toUnit, tabName) {
-    var newTab = document.createElement("div");
-    newTab.className = "tab-link";
-    newTab.innerHTML = "Result";
-    newTab.onclick = function () {
-        openTab(event, tabName);
-    };
+function createResultTab(input, result, fromUnit, toUnit, tabName) {
 
-    var tabContainer = document.querySelector(".tab-links");
-    var activeTab = document.querySelector(".tab-link.active");
-    tabContainer.replaceChild(newTab, activeTab);
+    // Get all elements with class="tab-content" and hide them
+    var tabContents = document.getElementsByClassName("tab-content");
+    for (var i = 0; i < tabContents.length; i++) {
+        tabContents[i].style.display = "none";
+        tabContents[i].classList.remove("active");
+    }
 
     // Create new content for the result
     var resultContent = document.createElement("div");
     resultContent.id = tabName;
     resultContent.className = "tab-content active";
+    resultContent.style.display = "block";
     resultContent.innerHTML = "<h2>Result of your calculation</h2><h1>" + input + " " + fromUnit + " = " + result + toUnit + "</h1>";
 
-    // Replace the current content with the result content
-    var activeContent = document.querySelector(".tab-content.active");
-    activeContent.parentNode.replaceChild(resultContent, activeContent);
+    // Create a reset button
+    var resetButton = document.createElement("button");
+    resetButton.textContent = "Reset";
+    resetButton.id = "reset"
+    resetButton.onclick = function() {
+        reset();
+    }
+    resultContent.appendChild(resetButton);
+
+    // Add the new active result tab content
+    document.body.appendChild(resultContent);
+}
+
+function reset() {
+    console.log("Reset");
 }
 
 function lengthConvert(event) {
@@ -77,8 +87,7 @@ function lengthConvert(event) {
     // Calculate the result
     result = valueInMeters * conversionFromMeters[toUnit];
     console.log(`Convert ${input} ${fromUnit} to ${result} ${toUnit}`);
-    createResultTab(event, input, result, fromUnit, toUnit, "lengthResult");
-    return result;
+    createResultTab(input, result, fromUnit, toUnit, "lengthResult");
 }
 
 function weightConvert(event) {
@@ -111,8 +120,7 @@ function weightConvert(event) {
     // Calculate the result
     result = valueInKilograms * conversionFromKilograms[toUnit];
     console.log(`Convert ${input} ${fromUnit} to ${result} ${toUnit}`);
-    createResultTab(event, input, result, fromUnit, toUnit, "weightResult");
-    return result;
+    createResultTab(input, result, fromUnit, toUnit, "weightResult");
 }
 
 function tempConvert(event) {
@@ -148,6 +156,5 @@ function tempConvert(event) {
         }
     }
     console.log(`Convert ${input} ${fromUnit} to ${result} ${toUnit}`);
-    createResultTab(event, input, result, fromUnit, toUnit, "tempResult");
-    return result;
+    createResultTab(input, result, fromUnit, toUnit, "tempResult");
 }
