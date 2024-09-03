@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Unit Converter</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <h1>Unit Converter</h1>
+
+        <div class="tab-links">
+            <div class="tab-link active" onclick="openTab(event, 'Length_tab')">Length</div>
+            <div class="tab-link" onclick="openTab(event, 'Weight_tab')">Weight</div>
+            <div class="tab-link" onclick="openTab(event, 'Temperature_tab')">Temperature</div>
+        </div>
+
+        <div id="Length_tab" class="tab-content active">
+            <h2>Enter the length to convert</h2>
+            <input type="number" id="lengthInput">
+            <h2>Unit to Convert from</h2>
+            <select id="lengthFrom">
+                <option disabled selected value></option>
+                <option>Millimeter</option>
+                <option>Centimeter</option>
+                <option>Meter</option>
+                <option>Kilometer</option>
+                <option>Inch</option>
+                <option>Foot</option>
+                <option>Yard</option>
+                <option>Mile</option>
+            </select>
+            <h2>Unit to Convert to</h2>
+            <select id="lengthTo">
+                <option disabled selected value></option>
+                <option>Millimeter</option>
+                <option>Centimeter</option>
+                <option>Meter</option>
+                <option>Kilometer</option>
+                <option>Inch</option>
+                <option>Foot</option>
+                <option>Yard</option>
+                <option>Mile</option>
+            </select>
+            <br></br>                
+            <button id="convert" onclick="lengthConvert(event)">Convert</button>
+        </div>
+
+        <div id="Weight_tab" class="tab-content">
+            <h2>Enter the weight to convert</h2>
+            <input type="number" id="weightInput">
+            <h2>Unit to Convert from</h2>
+            <select id="weightFrom">
+                <option disabled selected value></option>
+                <option>Milligram</option>
+                <option>Gram</option>
+                <option>Kilogram</option>
+                <option>Ounce</option>
+                <option>Pound</option>
+            </select>
+            <h2>Unit to Convert to</h2>
+            <select id="weightTo">
+                <option disabled selected value></option>
+                <option>Milligram</option>
+                <option>Gram</option>
+                <option>Kilogram</option>
+                <option>Ounce</option>
+                <option>Pound</option>
+            </select>
+            <br></br>                
+            <button id="convert" onclick="weightConvert(event)">Convert</button>
+        </div>
+
+        <div id="Temperature_tab" class="tab-content">
+            <h2>Enter the temperature to convert</h2>
+            <input type="number" id="tempInput">
+            <h2>Unit to Convert from</h2>
+            <select id="tempFrom">
+                <option disabled selected value></option>
+                <option>Celcius</option>
+                <option>Fahrenheit</option>
+                <option>Kelvin</option>
+            </select>
+            <h2>Unit to Convert to</h2>
+            <select id="tempTo">
+                <option disabled selected value></option>
+                <option>Celcius</option>
+                <option>Fahrenheit</option>
+                <option>Kelvin</option>
+            </select>
+            <br></br>                
+            <button id="convert" onclick="tempConvert(event)">Convert</button>
+        </div>
+
+    </body>
+</html>
